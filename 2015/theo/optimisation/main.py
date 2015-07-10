@@ -2,7 +2,14 @@ __author__ = 'theopavlakou'
 
 import numpy as np
 
-
+"""
+Problems:
+    1.  No documentation: It's hardly clear to me what some things mean.
+    2.  Not generalisable: See optimise_logistic_loss(). Suppose I want
+        to optimise for a squared loss cost function, more than half the
+        code would be exactly the same.
+    3.  This is completely unorganised. 
+"""
 def sigma(w, X):
     return 1.0 / (1 + np.exp(-np.dot(X, w)))
 
@@ -48,7 +55,8 @@ Y_pos = np.ones((np.ceil(N/2.0), 1))
 Y = np.vstack((Y_neg, Y_pos))
 w_init = np.random.randn(d, 1)
 w_new, costs = optimise_logistic_loss(w_init, X_data, Y, lmda, iterations)
-print(w_new)
-print(costs[0])
-print(costs[-1])
+
+print("The optimised w parameter is {0}".format(w_new))
+print("The initial cost was {0}".format(costs[0]))
+print("The final cost iss {0}".format(costs[-1]))
 
