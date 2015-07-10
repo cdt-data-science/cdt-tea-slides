@@ -7,8 +7,10 @@ Problems:
     1.  No documentation: It's hardly clear to me what some things mean.
     2.  Not generalisable: See optimise_logistic_loss(). Suppose I want
         to optimise for a squared loss cost function, more than half the
-        code would be exactly the same.
+        code would be exactly the same. Or suppose I want to use another
+        algorithm for the optimisation.
     3.  It is completely unorganised.
+    4.  Almost 100 lines of code for an algorithm that is so simple.
 """
 
 
