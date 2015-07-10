@@ -8,8 +8,10 @@ Problems:
     2.  Not generalisable: See optimise_logistic_loss(). Suppose I want
         to optimise for a squared loss cost function, more than half the
         code would be exactly the same.
-    3.  This is completely unorganised. 
+    3.  It is completely unorganised.
 """
+
+
 def sigma(w, X):
     return 1.0 / (1 + np.exp(-np.dot(X, w)))
 
@@ -27,9 +29,25 @@ def logistic_loss(w, X, y, l):
 
     return np.mean(-y * a - (1 - y) * b) + l / 2 * (np.sum(w ** 2))
 
-
 def derivative_logistic_loss(w, X, y, l):
     return l*w + np.dot(X.T, (sigma(w, X) - y))/X.shape[0]
+
+
+def square_loss(w, X, y, l):
+    f_w = 0.5*np.mean((np.dot(X, w) - y)**2)
+    return f_w + l / 2.0 * (np.sum(w ** 2))
+
+
+def derivative_square_loss(w, X, y, l):
+    return l*w + 1.0/X.shape[0]*np.dot(X.T, (np.dot(X, w) - y))
+
+
+def loss_3():
+    pass
+
+
+def derivative_loss_3():
+    pass
 
 
 def optimise_logistic_loss(w_init, X, y, l, max_it):
@@ -43,6 +61,22 @@ def optimise_logistic_loss(w_init, X, y, l, max_it):
         i += 1
     return w, cost_list
 
+
+def optimise_squared_loss(w_init, X, y, l, max_it):
+    i = 0
+    eta = 0.01
+    w = w_init
+    cost_list = [logistic_loss(w, X, y, l)]
+    while i < max_it:
+        w -= eta*derivative_square_loss(w, X, y, l)
+        cost_list.append(square_loss(w, X, y, l))
+        i += 1
+    return w, cost_list
+
+
+def optimise_loss_3():
+    pass
+
 N = 100
 d = 2
 iterations = 100000
@@ -54,9 +88,9 @@ Y_neg = np.zeros((np.floor(N/2.0), 1))
 Y_pos = np.ones((np.ceil(N/2.0), 1))
 Y = np.vstack((Y_neg, Y_pos))
 w_init = np.random.randn(d, 1)
-w_new, costs = optimise_logistic_loss(w_init, X_data, Y, lmda, iterations)
+w_new, costs = optimise_squared_loss(w_init, X_data, Y, lmda, iterations)
 
-print("The optimised w parameter is {0}".format(w_new))
+print("The optimised w parameter is \n{0}".format(w_new))
 print("The initial cost was {0}".format(costs[0]))
-print("The final cost iss {0}".format(costs[-1]))
+print("The final cost is {0}".format(costs[-1]))
 
