@@ -72,9 +72,7 @@ class Squared_Loss(Cost_Function):
                     vector.
         """
         if len(indices) == 0:
-            Mean_Squared_Error.gradient(np.dot(self.X, w), self.y)
             data_dependent_gradient = np.dot(self.X.T, Mean_Squared_Error.gradient(np.dot(self.X, w), self.y))
         else:
-            Mean_Squared_Error.gradient(np.dot(self.X[indices, :], w), self.y[indices])
             data_dependent_gradient = np.dot(self.X[indices, :].T, Mean_Squared_Error.gradient(np.dot(self.X[indices, :], w), self.y[indices]))
         return self.l*w + data_dependent_gradient

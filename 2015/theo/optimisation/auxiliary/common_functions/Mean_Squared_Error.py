@@ -31,4 +31,4 @@ class Mean_Squared_Error(object):
         :return:    An (m, ) vector which is the gradient with respect
                     to x.
         """
-        return 1/len(x)*(x-y)
+        return 1.0/len(x)*(x-y)
