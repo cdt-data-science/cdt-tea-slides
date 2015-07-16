@@ -46,4 +46,4 @@ class SGD(Optimisation_Algorithm):
         :return: cost_list: a list of costs after
                             each iteration.
         """
-        super(SGD, self).optimise_function()
+        return super(SGD, self).optimise_function()

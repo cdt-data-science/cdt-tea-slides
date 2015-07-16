@@ -40,4 +40,4 @@ class Gradient_Descent(Optimisation_Algorithm):
         :return: cost_list: a list of costs after
                             each iteration.
         """
-        super(Gradient_Descent, self).optimise_function()
+        return super(Gradient_Descent, self).optimise_function()
