@@ -34,6 +34,8 @@ class Cost_Function(object):
         self.X = X
         self.y = y
         self.l = l
+        # 1/N where N is the number of data points
+        self.inverse_n = 1.0/self.X.shape[0]
         # The number of data points
         self.num = self.X.shape[0]
         # The dimension of each input
