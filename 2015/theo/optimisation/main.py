@@ -31,8 +31,10 @@ def logistic_loss(w, X, y, l):
 
     return np.mean(-y * a - (1 - y) * b) + l / 2 * (np.sum(w ** 2))
 
+
 def derivative_logistic_loss(w, X, y, l):
     return l*w + np.dot(X.T, (sigma(w, X) - y))/X.shape[0]
+
 
 
 def square_loss(w, X, y, l):

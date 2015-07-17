@@ -30,6 +30,9 @@ w_init = np.random.randn(d, 1)
 
 cost_f = Squared_Loss(X_data, Y, lmda)
 gd = GD(cost_f, iterations, w_init=w_init, step_size=0.01)
+# Could go even further and make the optimisation algorithm
+# return an Optimisation_Result which would could be saved in
+# a pickle file etc.
 w_new, costs = gd.optimise_function()
 
 print("The optimised w parameter is \n{0}".format(w_new))
