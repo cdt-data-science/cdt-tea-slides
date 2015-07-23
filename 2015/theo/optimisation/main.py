@@ -85,13 +85,7 @@ N = 100
 d = 2
 iterations = 100000
 lmda = 1e-5
-X_neg = np.random.randn(np.floor(N/2.0), d) + 2*np.ones((1, d))
-X_pos = np.random.randn(np.ceil(N/2.0), d) - 2*np.ones((1, d))
-X_data = np.vstack((X_neg, X_pos))
-Y_neg = np.zeros((np.floor(N/2.0), 1))
-Y_pos = np.ones((np.ceil(N/2.0), 1))
-Y = np.vstack((Y_neg, Y_pos))
-w_init = np.random.randn(d, 1)
+
 w_new, costs = optimise_squared_loss(w_init, X_data, Y, lmda, iterations)
 
 print("The optimised w parameter is \n{0}".format(w_new))

@@ -3,6 +3,7 @@ __author__ = 'theopavlakou'
 import numpy as np
 from cost_functions.Squared_Loss import Squared_Loss
 from algorithms.Gradient_Descent import Gradient_Descent as GD
+from data_creation.Boolean_Data_Creator import Boolean_Data_Creator
 
 """
 Why is it better:
@@ -19,17 +20,13 @@ d = 2
 iterations = 100
 lmda = 1e-5
 
-# Should actually go a step further and make a data creator
-X_neg = np.random.randn(np.floor(N/2.0), d) + 2*np.ones((1, d))
-X_pos = np.random.randn(np.ceil(N/2.0), d) - 2*np.ones((1, d))
-X_data = np.vstack((X_neg, X_pos))
-Y_neg = np.zeros((np.floor(N/2.0), 1))
-Y_pos = np.ones((np.ceil(N/2.0), 1))
-Y = np.vstack((Y_neg, Y_pos))
+bdc = Boolean_Data_Creator()
+data = bdc.create_data(N, d)
 w_init = np.random.randn(d, 1)
 
-cost_f = Squared_Loss(X_data, Y, lmda)
+cost_f = Squared_Loss(data.X, data.Y, lmda)
 gd = GD(cost_f, iterations, w_init=w_init, step_size=0.01)
+
 # Could go even further and make the optimisation algorithm
 # return an Optimisation_Result which would could be saved in
 # a pickle file etc.
