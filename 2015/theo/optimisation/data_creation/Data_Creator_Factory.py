@@ -27,5 +27,5 @@ class Data_Creator_Factory(object):
         a new class and that can be called from anywhere in your
         code i.e. when something changes, the only thing that
         needs to change is this code here, not in 120898 other
-        places. 
+        places.
         """
