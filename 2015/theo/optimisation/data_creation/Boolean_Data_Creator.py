@@ -5,17 +5,22 @@ from Data_Creator import Data_Creator
 import numpy as np
 
 class Boolean_Data_Creator(Data_Creator):
+    """
+    Create boolean type data where there are only two classes and the
+    data comes from two separate Gaussians.
+    """
 
     def create_data(self, N, d):
         """
-        Creates the data. This needs to be overrided by
-        any concrete class.
+        Creates boolean type data. The positive data comes
+        from a Gaussian centred at [-1, -1, ..., -1] and the
+        negative data from a Gaussian at [1, 1, ..., 1].
+        The targets are in {0, 1}, with 0 being the
+        negative class and 1 being the positive class.
 
         :param N: The number of data points
         :param d: The dimension of the input
-        :return:    an (N, m) numpy array where m is the
-                    dimension of the output which is
-                    determined by the type of data creator.
+        :return: a Data object with boolean data.
         """
         X_neg = np.random.randn(np.floor(N/2.0), d) + 2*np.ones((1, d))
         X_pos = np.random.randn(np.ceil(N/2.0), d) - 2*np.ones((1, d))
