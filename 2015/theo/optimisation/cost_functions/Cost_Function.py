@@ -54,7 +54,7 @@ class Cost_Function(object):
         """
         pass
 
-    def gradient(self, w, indices=[]):
+    def derivative(self, w, indices=[]):
         """
         An abstract method. This describes what is needed
         to get the gradient of the loss function, but not

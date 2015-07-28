@@ -70,7 +70,7 @@ def optimise_squared_loss(w_init, X, y, l, max_it):
     i = 0
     eta = 0.01
     w = w_init
-    cost_list = [logistic_loss(w, X, y, l)]
+    cost_list = [square_loss(w, X, y, l)]
     while i < max_it:
         w -= eta*derivative_square_loss(w, X, y, l)
         cost_list.append(square_loss(w, X, y, l))
@@ -86,6 +86,9 @@ d = 2
 iterations = 100000
 lmda = 1e-5
 
+w_init = np.random.random((d, ))
+X_data = np.random.random((N, d))
+Y = np.random.random((N, ))
 w_new, costs = optimise_squared_loss(w_init, X_data, Y, lmda, iterations)
 
 print("The optimised w parameter is \n{0}".format(w_new))

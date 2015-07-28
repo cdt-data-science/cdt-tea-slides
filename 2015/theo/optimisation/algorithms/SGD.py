@@ -26,7 +26,6 @@ class SGD(Optimisation_Algorithm):
                                 upon each iteration.
         """
         super(SGD, self).__init__(cost_f, max_it, w_init, step_size)
-        self.step_size = step_size
         self.minibatch_size = minibatch_size
 
     def do_iteration(self):

@@ -22,7 +22,6 @@ class Gradient_Descent(Optimisation_Algorithm):
                             by the algorithm.
         """
         super(Gradient_Descent, self).__init__(cost_f, max_it, w_init, step_size)
-        self.step_size = step_size
 
     def do_iteration(self):
         """

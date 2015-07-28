@@ -36,6 +36,7 @@ class Optimisation_Algorithm(object):
             self.w = rng.randn(self.d, 1)
         else:
             self.w = w_init
+        self.step_size = step_size
 
     def do_iteration(self):
         """
