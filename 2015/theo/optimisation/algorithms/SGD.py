@@ -37,12 +37,3 @@ class SGD(Optimisation_Algorithm):
         indices = rng.randint(self.cost_f.num, size=self.minibatch_size)
         self.w -= self.step_size*self.cost_f.derivative(self.w, indices)
 
-    def optimise_function(self):
-        """
-        Optimises the cost function with SGD.
-
-        :return: self.w: the final parameter vector
-        :return: cost_list: a list of costs after
-                            each iteration.
-        """
-        return super(SGD, self).optimise_function()

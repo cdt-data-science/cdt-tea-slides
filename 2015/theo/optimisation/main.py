@@ -36,24 +36,6 @@ def derivative_logistic_loss(w, X, y, l):
     return l*w + np.dot(X.T, (sigma(w, X) - y))/X.shape[0]
 
 
-
-def square_loss(w, X, y, l):
-    f_w = 0.5*np.mean((np.dot(X, w) - y)**2)
-    return f_w + l / 2.0 * (np.sum(w ** 2))
-
-
-def derivative_square_loss(w, X, y, l):
-    return l*w + 1.0/X.shape[0]*np.dot(X.T, (np.dot(X, w) - y))
-
-
-def loss_3():
-    pass
-
-
-def derivative_loss_3():
-    pass
-
-
 def optimise_logistic_loss(w_init, X, y, l, max_it):
     i = 0
     eta = 0.03
@@ -64,6 +46,16 @@ def optimise_logistic_loss(w_init, X, y, l, max_it):
         cost_list.append(logistic_loss(w, X, y, l))
         i += 1
     return w, cost_list
+
+##########################################################################
+
+def square_loss(w, X, y, l):
+    f_w = 0.5*np.mean((np.dot(X, w) - y)**2)
+    return f_w + l / 2.0 * (np.sum(w ** 2))
+
+
+def derivative_square_loss(w, X, y, l):
+    return l*w + 1.0/X.shape[0]*np.dot(X.T, (np.dot(X, w) - y))
 
 
 def optimise_squared_loss(w_init, X, y, l, max_it):
@@ -78,8 +70,27 @@ def optimise_squared_loss(w_init, X, y, l, max_it):
     return w, cost_list
 
 
+def loss_3():
+    pass
+
+
+def derivative_loss_3():
+    pass
+
+
 def optimise_loss_3():
     pass
+
+
+
+
+
+
+
+
+
+
+
 
 N = 100
 d = 2

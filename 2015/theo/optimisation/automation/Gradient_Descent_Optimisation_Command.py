@@ -2,7 +2,7 @@ __author__ = 'theopavlakou'
 
 from algorithms.Gradient_Descent import Gradient_Descent
 
-class Gradient_Descent_Optimiation_Command(object):
+class Gradient_Descent_Optimisation_Command(object):
     """
     Implements the Command interface. Encapsulates the
     Gradient Descent algorithm with its cost function and
