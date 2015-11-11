@@ -17,9 +17,7 @@ Problems:
 def sigma(w, X):
     return 1.0 / (1 + np.exp(-np.dot(X, w)))
 
-
 def logistic_loss(w, X, y, l):
-
     soft_pred = sigma(w, X)
     zero = (soft_pred == 0)
     soft_pred[zero] = np.finfo(float).eps
@@ -30,7 +28,6 @@ def logistic_loss(w, X, y, l):
     b = np.log(1 + np.finfo(float).eps - soft_pred)
 
     return np.mean(-y * a - (1 - y) * b) + l / 2 * (np.sum(w ** 2))
-
 
 def derivative_logistic_loss(w, X, y, l):
     return l*w + np.dot(X.T, (sigma(w, X) - y))/X.shape[0]
@@ -46,6 +43,19 @@ def optimise_logistic_loss(w_init, X, y, l, max_it):
         cost_list.append(logistic_loss(w, X, y, l))
         i += 1
     return w, cost_list
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##########################################################################
 
@@ -92,6 +102,19 @@ def optimise_loss_3():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 N = 100
 d = 2
 iterations = 100000
@@ -99,10 +122,29 @@ lmda = 1e-5
 
 w_init = np.random.random((d, ))
 X_data = np.random.random((N, d))
-Y = np.random.random((N, ))
-w_new, costs = optimise_squared_loss(w_init, X_data, Y, lmda, iterations)
+Y = np.random.randint(0, 2, (N, ))
+w_new, costs = optimise_logistic_loss(w_init, X_data, Y, lmda, iterations)
 
 print("The optimised w parameter is \n{0}".format(w_new))
 print("The initial cost was {0}".format(costs[0]))
 print("The final cost is {0}".format(costs[-1]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

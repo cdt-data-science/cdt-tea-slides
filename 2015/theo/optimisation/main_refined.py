@@ -8,7 +8,7 @@ from data_creation.Data_Creator_Factory import Data_Creator_Factory
 """
 Why is it better:
     1.  Documentation: Every class has pretty clear documentation.
-    2.  Competely generalisable: I can change the algorithm and the
+    2.  Completely generalisable: I can change the algorithm and the
         cost function is seconds, literally.
     3.  Organised directory structure. I can find everything I want.
     4.  Less than 40 lines of code (and could easily be further refactored).
