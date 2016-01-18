@@ -118,7 +118,7 @@ The second proof, I call it ``the paradox proof'', is \textbf{constructive}. We 
 
 \frametitle{The infinity proof}
 
-\begin{block}{Step 1: counting all programs}
+\begin{block}{Step 1: count all programs}
 
 \begin{itemize}
 \addtolength{\itemsep}{0.2\baselineskip}
@@ -136,7 +136,7 @@ The second proof, I call it ``the paradox proof'', is \textbf{constructive}. We 
 
 \frametitle{The infinity proof}
 
-\begin{block}{Step 2: counting all problems}
+\begin{block}{Step 2: count all problems}
 
 \begin{itemize}
 \addtolength{\itemsep}{0.2\baselineskip}
@@ -232,7 +232,7 @@ So are computers totally useless? That seems to be the conclusion of our reasoni
 \\[0.6em]
 The reason for this result is that we counted as problems \textbf{arbitrary mappings} from $\N$ to $\N$. Real problems we care about are not arbitrary mappings, they have some \textbf{structure}. After all, we can only describe countably many problems! It's easy to see why; just observe that the description of a problem, be it in English or in a formal language, is a string, and there are countably many of them. Hence the problems that we can actually talk about, and possibly care about, are as many as numbers in $\N$, as many as programs! Perhaps then we can solve them all!
 \\[0.6em]
-This is indeed reassuring, but we will still see that it is not the case. There are problems that we can easily describe and are of practical interest that are still unsolvable. One of them, the infamous \textbf{halting problem} is one of them.
+This is indeed reassuring, but we will still see that it is not the case. There are problems that we can easily describe and are of practical interest that are still unsolvable. The infamous \textbf{halting problem} is one of them.
 
 \end{frame}
 
@@ -372,7 +372,7 @@ Alan Turing\\
 \footnotesize
 We've proved that the halting problem is unsolvable by \textbf{contradiction}. That is, we showed that the existence of a program that solves it leads to paradoxical results. This is a sketch of a famous proof by \textbf{Alan Turing} published in \textbf{1936}. Turing introduced the \textbf{Turing machine}, a theoretical computing device which formalizes the notion of a program (in our proof sketch we used the notion of a program informally). Then, he went on to show that no Turing machine can determine whether a given Turing machine halts on a given input. It is remarkable that this proof dates back to 1936; computers barely existed back then!
 \\[0.6em]
-It is worth mentioning that the reason Turing was interested in computability is David Hilbert's \textbf{Entscheidungsproblem}, which asks for an algorithm to determine whether a statement of first order logic can be derived from the axioms. The undecidability of the halting problem implies the undecidability of the Entscheidungsproblem. At the same time as Turing, in 1936, Alonzo Church (Turing's PhD supervisor!) published an equivalent proof of the undecidability of the Entscheidungsproblem using lambda calculus.
+It is worth mentioning that the reason Turing was interested in computability is David Hilbert's \textbf{Entscheidungsproblem}, which asks for an algorithm to determine whether a statement of first order logic can be derived from a set of axioms. The undecidability of the halting problem implies the undecidability of the Entscheidungsproblem, which is exctly what Turing set out to prove. At the same time as Turing, in 1936, Alonzo Church (Turing's PhD supervisor!) published an equivalent proof of the undecidability of the Entscheidungsproblem using lambda calculus.
 
 \end{frame}
 
@@ -406,7 +406,7 @@ The \textbf{Entscheidungsproblem} was posed by \textbf{David Hilbert} in \textbf
 \begin{frame}<beamer:0>
 
 \footnotesize
-Finally, a solution to the \textbf{number theory problem} would provide an automatic way to prove or disprove any statement of number theory! If a program solved it, then we would simply feed into it Fermat's last theorem, Goldbach's conjecture, the abc conjecture, or any other conjecture we wanted to know whether it's true, wait for some time (maybe long, but still finitely long!) and get a definite answer. However, no such program exists, and this is a direct consequence of \textbf{G\"{o}del's first incompleteness theorem} (published in 1931), which says that no automatic procedure can generate all true statements of number theory and only them. If such a program existed that would immediately provide such an automatic procedure, which would be a contradiction.
+Finally, a solution to the \textbf{number theory problem} would provide an automatic way to prove or disprove any statement of number theory! If a program solved it, then we would simply feed into it Fermat's last theorem, Goldbach's conjecture, the abc conjecture, or any other proposition of number theory we wanted to know whether it's true, wait for some time (maybe long, but still finitely long!) and get a definite answer. However, no such program exists, and this is a direct consequence of \textbf{G\"{o}del's first incompleteness theorem} (published in 1931), which says that no automatic procedure can generate all true statements of number theory and only them. If such a program existed that would immediately provide such an automatic procedure, which would be a contradiction.
 
 \end{frame}
 
@@ -414,7 +414,7 @@ Finally, a solution to the \textbf{number theory problem} would provide an autom
 \begin{frame}<beamer:0>
 
 \footnotesize
-The above problems give us a flavour of the type of problems that are unsolvable. They typically contain some element of \textbf{infinity} in their computational requirements. For instance, one way to ``solve'' the halting problem would be to run \texttt{P(x)} for long enough and see whether it halts. This might require running it forever, in case it doesn't halt! Similarly, solving the verification problem might require running a program for infinitely long to see if the specification is met. A program ``solving'' the Entscheidungsproblem could generate all statements that follow from the axioms and check whether the given statement is included in them. Since infinitely many statements can be generated from the axioms, this procedure might take infinitely long. Finally, in ``proving'' a number-theoretic proposition such as ``there exist infinitely many primes'', a program would have to go through all numbers in $\N$ which of course would take infinitely long.
+The above problems give us a flavour of the type of problems that computers cannot solve. They typically contain some element of \textbf{infinity} in their computational requirements. For instance, one way to ``solve'' the halting problem would be to run \texttt{P(x)} for long enough and see whether it halts. This might require running it forever, in case it doesn't halt! Similarly, ``solving'' the verification problem might require running a program for infinitely long or for infinitely many inputs to see if the specification is met. A program ``solving'' the Entscheidungsproblem could generate all statements that follow from the axioms and check whether the given statement is included in them. Since infinitely many statements can be generated from the axioms, this procedure might take infinitely long. Finally, in ``proving'' a number-theoretic proposition such as ``there exist infinitely many primes'', a program would have to go through all numbers in $\N$ which of course would take infinitely long.
 \\[0.6em]
 Ultimately, the limits of computation are due to the fact that \textbf{we require programs to run in finite time}. If we allowed programs to run infinitely long, such problems would become solvable. But clearly, a program running infinitely long is a rather useless one.
 
