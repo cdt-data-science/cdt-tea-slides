@@ -1,0 +1,18 @@
+Dataset,RF_vs_LR,N,features,classes,pct_maj_class,Desc
+audiology-std,    -52.0,226,59,18,26.3,Diagnose hearing ailment
+haberman-survival, -7.1,306,3,2,73.5,Predict if the patient will survive longer than 5 years
+hill-valley,      -10.5,606,100,2,50.7,Determine whether you are on a hill or in a valley depending on x1-x99 and y information
+chess-krvk,        58.5,28056,6,18,16.2,Predict nr moves till win (interestingly chess-krvkp solved well with logistic)
+flags,             32.5,194,28,8,30.9,Predict country religion from flag and country stats
+hayes-roth,        39.4,132,3,3,38.6,Predict class from entirely categorical data
+trains,            31.7,10,32,2,50,Determine concise decision rules distinguishing trains traveling east from those traveling west
+wall-following,    29.5,5456,24,4,40.4,Classify which way a robot should move to avoid collisions (experiment to show nonlinear)
+
+
+
+
+
+
+
+
+
