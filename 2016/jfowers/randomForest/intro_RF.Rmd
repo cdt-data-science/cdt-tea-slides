@@ -492,9 +492,11 @@ fancyRpartPlot(rpart.flags)
 * Initialisation for a neural network (Welbl 2014) (Kontschieder 2015 @ ICCV)
 * Feature factories - parametrise features
 
+
 ## RF to NN
 
-<img src="./images/RFnn.png" height="470px"/> 
+Oisin Mac Aodha - slide from presentation in 2015
+<img src="./images/RFnn.png" height="450px"/> 
 
 
 ## Thank you for listening {.build}
