@@ -1,0 +1,404 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textbf{{#1}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={James Owers},
+            pdftitle={Gridengine Basics},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{5}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Gridengine Basics}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{James Owers}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{27 June 2016}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\textbf{TL;DR}: To use \texttt{James} or \texttt{Charles} servers as if
+you were \texttt{ssh}ing into them as before, just \texttt{ssh renown}
+then \texttt{qlogin}.
+
+\section{Who is this for}\label{who-is-this-for}
+
+People who use the \texttt{James} or \texttt{Charles} servers. Until now
+we have \texttt{ssh}'d into the servers but now \texttt{ssh} access has
+been removed from all but a few. Now in place is Son of a Grid Engine
+(\texttt{SGE}) to control access to servers. This guide shows you how to
+continue much like before and how to use basic \texttt{SGE} commands.
+
+Son of a Grid Engine is an open source version of Univa Grid Engine (née
+Oracle Grid Engine (née Sun Grid Engine))
+
+\subsection{Useful references}\label{useful-references}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \href{https://arc.liv.ac.uk/trac/SGE}{SGE project site}
+\item
+  \href{http://arc.liv.ac.uk/SGE/htmlman/manuals.html}{SGE
+  documentation}
+\item
+  \texttt{man qsub} from within \texttt{renown}
+\item
+  \href{http://star.mit.edu/cluster/docs/0.92rc2/guides/sge.html}{MIT
+  SGE introduction}
+\end{itemize}
+
+\section{Getting started}\label{getting-started}
+
+Log in to the gridengine machine \texttt{renown}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## If not on a dice machine}
+\KeywordTok{kinit} \NormalTok{s0816700}
+\KeywordTok{aklog}
+\KeywordTok{ssh} \NormalTok{-K s0816700@staff.ssh.inf.ed.ac.uk}
+\CommentTok{# ssh -K s0816700@student.ssh.inf.ed.ac.uk}
+\KeywordTok{ssh} \NormalTok{renown}
+\end{Highlighting}
+\end{Shaded}
+
+You will be in your home directory, in my case, \texttt{/home/s0816700}.
+We can see that lots of space has been added to the \texttt{/home/}
+directory (\texttt{/mnt/cdt\_gridengine\_home})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{df} \NormalTok{-h}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Filesystem                                     Size  Used Avail Use% Mounted on
+/dev/vda1                                       24G  5.1G   18G  23% /
+devtmpfs                                       2.0G     0  2.0G   0% /dev
+tmpfs                                          2.0G     0  2.0G   0% /dev/shm
+tmpfs                                          2.0G  9.4M  2.0G   1% /run
+tmpfs                                          2.0G     0  2.0G   0% /sys/fs/cgroup
+/etc/glusterfs/gv0.vol                         147G   84G   57G  60% /disk/glusterfs/gv0
+charles11.inf.ed.ac.uk:/cdt-gridengine-common  385G  264M  365G   1% /mnt/cdt_gridengine_common
+anne.inf.ed.ac.uk:/cdt-gridengine-home         2.7T  432G  2.2T  17% /mnt/cdt_gridengine_home
+/dev/vda4                                      7.6G   65M  7.1G   1% /var/cache/afs
+AFS                                            2.0T     0  2.0T   0% /afs
+tmpfs                                          396M     0  396M   0% /run/user/656624
+tmpfs                                          396M     0  396M   0% /run/user/28328
+tmpfs                                          396M     0  396M   0% /run/user/1559549
+tmpfs                                          396M     0  396M   0% /run/user/1421660
+\end{verbatim}
+
+\emph{Not covered here:} how to run parallel jobs and writing to the
+distributed file system `Gluster'. For information on running parallel
+jobs using SGE, see the latter half of the
+\href{http://star.mit.edu/cluster/docs/0.92rc2/guides/sge.html}{MIT SGE
+introduction}.
+
+\section{Basic SGE commands}\label{basic-sge-commands}
+
+\subsection{Interactive session on a node (just like
+\texttt{ssh}ing)}\label{interactive-session-on-a-node-just-like-sshing}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qlogin}
+\end{Highlighting}
+\end{Shaded}
+
+Useful options:
+
+\begin{itemize}
+\item
+  specify a specific node
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qlogin} \NormalTok{-l h=charles14}
+\end{Highlighting}
+\end{Shaded}
+\item
+  specify resource must have a GPU
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qlogin} \NormalTok{-l gpu=1}
+\end{Highlighting}
+\end{Shaded}
+\end{itemize}
+
+\subsection{Submit a script to the
+queue}\label{submit-a-script-to-the-queue}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qsub} \NormalTok{myscript.sh}
+\end{Highlighting}
+\end{Shaded}
+
+OUTPUT two files containing the stdout and sterr
+{[}script-name{]}.o{[}jobnr{]} and {[}script-name{]}.e{[}jobnr{]}, and
+whatever files or directories your script creates
+
+\subsection{View status of your subitted
+jobs}\label{view-status-of-your-subitted-jobs}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qstat}
+\end{Highlighting}
+\end{Shaded}
+
+OUTPUT
+
+\begin{verbatim}
+job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID 
+-----------------------------------------------------------------------------------------------------------------
+     15 0.55500 long_sleep s0816700     r     06/03/2016 22:54:38 all.q@charles11.inf.ed.ac.uk       1 
+
+state = *qw*/**r** for *queued and waiting*/**running**
+\end{verbatim}
+
+\subsection{Deleting Jobs}\label{deleting-jobs}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qdel}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Viewing Node Status}\label{viewing-node-status}
+
+\texttt{qhost}
+
+OUTPUT
+
+\begin{verbatim}
+HOSTNAME                ARCH         NCPU NSOC NCOR NTHR  LOAD  MEMTOT  MEMUSE  SWAPTO  SWAPUS
+----------------------------------------------------------------------------------------------
+global                  -               -    -    -    -     -       -       -       -       -
+anne                    lx-amd64       64    4   64   64  0.02  995.6G    8.5G   31.2G     0.0
+charles01               lx-amd64       32    2   16   32  1.01   62.7G    8.3G   31.3G     0.0
+charles02               lx-amd64       32    2   16   32  0.27   62.7G    3.7G   31.3G     0.0
+charles03               lx-amd64       32    2   16   32  0.01   62.7G    3.2G   31.3G     0.0
+charles04               lx-amd64       32    2   16   32  0.04   62.7G    2.5G   31.3G     0.0
+charles05               lx-amd64       32    2   16   32 13.61   62.7G    6.0G   31.3G     0.0
+charles06               -               -    -    -    -     -       -       -       -       -
+charles07               -               -    -    -    -     -       -       -       -       -
+charles08               -               -    -    -    -     -       -       -       -       -
+charles09               -               -    -    -    -     -       -       -       -       -
+charles10               -               -    -    -    -     -       -       -       -       -
+charles11               lx-amd64       24    2   12   24  0.01   62.8G    2.6G   31.4G     0.0
+charles12               lx-amd64       24    2   12   24  0.01   62.8G    2.4G   31.4G     0.0
+charles13               lx-amd64       24    2   12   24  0.01   62.8G    2.6G   31.4G     0.0
+charles14               lx-amd64       24    2   12   24  0.01   62.8G    2.6G   31.4G     0.0
+\end{verbatim}
+
+\section{Example: Running an IPython Notebook and accessing it from
+outside
+DICE}\label{example-running-an-ipython-notebook-and-accessing-it-from-outside-dice}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Setup python virtual environment with IPython Notebook installed
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Tip: install it in your home directory on DICE
+  \end{itemize}
+\item
+  \texttt{qlogin} to your server of choice
+\item
+  Check GPU use with \texttt{nvidia-smi}
+\item
+  activate your python virtual environment (you'll need to
+  \texttt{kinit} \& \texttt{aklog} if this is located on your DICE home
+  as recommended)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source} \NormalTok{/afs/inf.ed.ac.uk/user/s08/s0816700/venv/nolearn/bin/activate}
+\end{Highlighting}
+\end{Shaded}
+\item
+  create a password hash using python
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CharTok{from} \NormalTok{IPython.lib }\CharTok{import} \NormalTok{passwd}
+\NormalTok{passwd()}
+\NormalTok{exit}
+\end{Highlighting}
+\end{Shaded}
+\item
+  start the IPython Notebook
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{longjob} \NormalTok{-28day -c }\StringTok{'ipython notebook  --ip="*" --NotebookApp.password=sha1:0880f873e98f:9ddab235858c92ea9a2e02877b5b324bf091ef93 --no-browser --port=1337'}\KeywordTok{`}
+\end{Highlighting}
+\end{Shaded}
+\item
+  access the notebook
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    From within forum simply browse to \texttt{http://charles13:1337}
+    (replacing charles13 with where you were)
+  \item
+    Outside the forum either:
+
+    \begin{itemize}
+    \itemsep1pt\parskip0pt\parsep0pt
+    \item
+      first kinit \& aklog then, ssh port forward charles13:1337 back to
+      your computer:
+      \texttt{ssh -K -L 8889:charles13:1337 s0816700@staff.ss.inf.ed.ac.uk}
+      then go to \texttt{http://localhost:8889}
+    \item
+      or connect via VPN and navigate to \texttt{...} TODO: fill this
+      in!
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+{\textbf{WARNING}}: If anyone finds/hacks your password\ldots{}they have
+access to your filesystem
+
+\textbf{AWESOME WIN}: this longjob process allows continual access to
+your filesystem after the original afs ticket expires
+
+\section{Current issues}\label{current-issues}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Automatic resource allocation doesn't appear to take into account GPU
+  use\ldots{}
+\item
+  \ldots{}working with Charles and Iain Rae on that
+\item
+  IPython Notebook solution isn't very secure
+\item
+  If you are running a script containing \texttt{longjob} using
+  \texttt{qsub}, how is your kerberos ticket handled
+\end{itemize}
+
+\section{Tips}\label{tips}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  when logged in to \texttt{renown} type \texttt{q} then double tap
+  \texttt{tab} to get a list of the commands for use!
+\item
+  \texttt{nvidia-smi} lets you check the GPU use on a server - if the
+  command doesn't work then the server you are on doesn't have a GPU;
+  try to login to another server; you can specify a specific server with
+  \texttt{qlogin -l h=charles14}
+\end{itemize}
+
+\end{document}

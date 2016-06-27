@@ -38,7 +38,9 @@ ssh -K s0816700@staff.ssh.inf.ed.ac.uk
 ssh renown
 ```
 
-We can see that lots of space has been added to the home directory
+You will be in your home directory, in my case, `/home/s0816700`. We can see 
+that lots of space has been added to the `/home/` directory
+(`/mnt/cdt_gridengine_home`)
 
 
 ```bash
@@ -62,6 +64,10 @@ tmpfs                                          396M     0  396M   0% /run/user/2
 tmpfs                                          396M     0  396M   0% /run/user/1559549
 tmpfs                                          396M     0  396M   0% /run/user/1421660
 ```
+
+*Not covered here:* how to run parallel jobs and writing to the distributed file system
+'Gluster'. For information on running parallel jobs using SGE, see the latter
+half of the [MIT SGE introduction](http://star.mit.edu/cluster/docs/0.92rc2/guides/sge.html).
 
 
 # Basic SGE commands
@@ -153,7 +159,7 @@ charles14               lx-amd64       24    2   12   24  0.01   62.8G    2.6G  
 
 1. Setup python virtual environment with IPython Notebook installed
     * Tip: install it in your home directory on DICE
-1. `qlogin -V` to your server of choice
+1. `qlogin` to your server of choice
 1. Check GPU use with `nvidia-smi`
 1. activate your python virtual environment (you'll need to `kinit` & `aklog` if
 this is located on your DICE home as recommended)
@@ -175,10 +181,11 @@ this is located on your DICE home as recommended)
     ```
 1. access the notebook
     * From within forum simply browse to `http://charles13:1337` (replacing charles13 with where you were)
-    * Outside the forum first kinit & aklog then, ssh port forward 
-    charles13:1337 back to your computer:
-    `ssh -K -L 8889:charles13:1337 s0816700@staff.ss.inf.ed.ac.uk` then go to
-    `http://localhost:8889`
+    * Outside the forum either:
+        * first kinit & aklog then, ssh port forward charles13:1337 back to your computer:
+        `ssh -K -L 8889:charles13:1337 s0816700@staff.ss.inf.ed.ac.uk` then go to
+        `http://localhost:8889`
+        * or connect via VPN and navigate to `...` TODO: fill this in!
 
 
 <span style="color:orange">**WARNING**</span>: If anyone finds/hacks your password...they have access to your 
@@ -193,6 +200,8 @@ after the original afs ticket expires
 * Automatic resource allocation doesn't appear to take into account GPU use...
 * ...working with Charles and Iain Rae on that
 * IPython Notebook solution isn't very secure
+* If you are running a script containing `longjob` using `qsub`, how is your 
+kerberos ticket handled
 
 
 # Tips
