@@ -276,7 +276,13 @@ tmpfs                                          396M     0  396M   0% /run/user/1
 <div id="interactive-session-on-a-node-just-like-sshing" class="section level2">
 <h2><span class="header-section-number">3.1</span> Interactive session on a node (just like <code>ssh</code>ing)</h2>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qlogin</span></code></pre>
-<p>Useful options: <code>qlogin -l h=charles14</code> - specify a specific node <code>qlogin -l gpu=1</code> - put me on a server with a GPU</p>
+<p>Useful options:</p>
+<ul>
+<li><p>specify a specific node</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qlogin</span> -l h=charles14</code></pre></li>
+<li><p>specify resource must have a GPU</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qlogin</span> -l gpu=1</code></pre></li>
+</ul>
 </div>
 <div id="submit-a-script-to-the-queue" class="section level2">
 <h2><span class="header-section-number">3.2</span> Submit a script to the queue</h2>
@@ -285,7 +291,7 @@ tmpfs                                          396M     0  396M   0% /run/user/1
 </div>
 <div id="view-status-of-your-subitted-jobs" class="section level2">
 <h2><span class="header-section-number">3.3</span> View status of your subitted jobs</h2>
-<p><code>qstat</code></p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qstat</span></code></pre>
 <p>OUTPUT</p>
 <pre><code>job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID 
 -----------------------------------------------------------------------------------------------------------------
@@ -293,8 +299,12 @@ tmpfs                                          396M     0  396M   0% /run/user/1
 
 state = *qw*/**r** for *queued and waiting*/**running**</code></pre>
 </div>
+<div id="deleting-jobs" class="section level2">
+<h2><span class="header-section-number">3.4</span> Deleting Jobs</h2>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qdel</span></code></pre>
+</div>
 <div id="viewing-node-status" class="section level2">
-<h2><span class="header-section-number">3.4</span> Viewing Node Status</h2>
+<h2><span class="header-section-number">3.5</span> Viewing Node Status</h2>
 <p><code>qhost</code></p>
 <p>OUTPUT</p>
 <pre><code>HOSTNAME                ARCH         NCPU NSOC NCOR NTHR  LOAD  MEMTOT  MEMUSE  SWAPTO  SWAPUS
@@ -343,8 +353,16 @@ exit</code></pre></li>
 <p><span style="color:red"><strong>WARNING</strong></span>: If anyone finds/hacks your password…they have access to your filesystem</p>
 <p><strong>AWESOME WIN</strong>: this longjob process allows continual access to your filesystem after the original afs ticket expires</p>
 </div>
+<div id="current-issues" class="section level1">
+<h1><span class="header-section-number">5</span> Current issues</h1>
+<ul>
+<li>Automatic resource allocation doesn’t appear to take into account GPU use…</li>
+<li>…working with Charles and Iain Rae on that</li>
+<li>IPython Notebook solution isn’t very secure</li>
+</ul>
+</div>
 <div id="tips" class="section level1">
-<h1><span class="header-section-number">5</span> Tips</h1>
+<h1><span class="header-section-number">6</span> Tips</h1>
 <ul>
 <li>when logged in to <code>renown</code> type <code>q</code> then double tap <code>tab</code> to get a list of the commands for use!</li>
 <li><code>nvidia-smi</code> lets you check the GPU use on a server - if the command doesn’t work then the server you are on doesn’t have a GPU; try to login to another server; you can specify a specific server with <code>qlogin -l h=charles14</code></li>

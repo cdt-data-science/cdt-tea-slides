@@ -73,8 +73,17 @@ qlogin
 ```
 
 Useful options:
-`qlogin -l h=charles14` - specify a specific node
-`qlogin -l gpu=1` - put me on a server with a GPU
+
+* specify a specific node
+    
+    ```bash
+    qlogin -l h=charles14
+    ```
+* specify resource must have a GPU
+    
+    ```bash
+    qlogin -l gpu=1
+    ```
 
 
 ## Submit a script to the queue
@@ -91,7 +100,10 @@ two files containing the stdout and sterr [script-name].o[jobnr] and [script-nam
 
 ## View status of your subitted jobs
 
-`qstat`
+
+```bash
+qstat
+```
 
 OUTPUT
 ```
@@ -101,6 +113,14 @@ job-ID  prior   name       user         state submit/start at     queue         
 
 state = *qw*/**r** for *queued and waiting*/**running**
 ```
+
+## Deleting Jobs
+
+
+```bash
+qdel
+```
+
 
 ## Viewing Node Status
 
@@ -164,6 +184,13 @@ filesystem
 
 **AWESOME WIN**: this longjob process allows continual access to your filesystem
 after the original afs ticket expires
+
+
+# Current issues
+
+* Automatic resource allocation doesn't appear to take into account GPU use...
+* ...working with Charles and Iain Rae on that
+* IPython Notebook solution isn't very secure
 
 
 # Tips
