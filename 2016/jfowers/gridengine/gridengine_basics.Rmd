@@ -190,7 +190,10 @@ this is located on your DICE home as recommended)
         * first kinit & aklog then, ssh port forward charles13:1337 back to your computer:
         `ssh -K -L 8889:charles13:1337 s0816700@staff.ss.inf.ed.ac.uk` then go to
         `http://localhost:8889`
-        * or connect via VPN and navigate to `...` TODO: fill this in!
+        * or connect to infromatics-via-forum using [OpenVPN](http://computing.help.inf.ed.ac.uk/openvpn), 
+        find the address of the server to connect to (e.g. by `ssh`ing into
+        informatics and `ping charles12`, and navigate to this IP on your
+        computer
 
 
 <span style="color:orange">**WARNING**</span>: If anyone finds/hacks your password...they have access to your 
