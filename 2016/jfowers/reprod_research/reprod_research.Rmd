@@ -1,5 +1,5 @@
 ---
-title: "Doing Reproducible Research"
+title: "Tools Reproducible Research"
 author: "James Owers, University of Edinburgh"
 date: "27th June 2015"
 output: 
@@ -26,10 +26,20 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442",
 
 ```
 
+<!-- TODO: Repurpose this to focus on reprod research. Maybe separate  -->
+
 ## Purpose
 
-To convince you it is worth the time investment to make
-your research more reproducible
+> To convince you:
+
+> * it is worth the time investment to make your research more reproducible
+> * demonstrate 
+
+
+> Audience:
+
+> * anyone who writes reports, papers, documentation, or in any way communicates
+their work...
 
 
 ## Motivation {.columns-2}
@@ -53,6 +63,9 @@ Some of this talk is adapted from [slides by Karl](http://kbroman.org/Tools4RR/p
 * ...how many hours have you wasted correcting tables/figures
 
 ## An example research project... {.columns-2}
+
+Draw on examples given. Encorporate logos for software used.
+
 <img src="./images/not_reprod.jpg" height="400px"/>
 
 Whiteboard time!
@@ -143,7 +156,7 @@ RStudio + RMarkdown?
     - ...but also for people to reproduce and extend
 
 
-# Ipython vs. Markdown: Exploration
+# Exploration phase
 
 ## Sharing pilot work with team
 * Ipython ideal - allows for sharing of expected results and ability to interact
@@ -156,8 +169,9 @@ RStudio + RMarkdown?
 * Rodeo however has support
 
 
-# Ipython vs. Markdown: Experimentation
+# Experimentation phase
 
+## Servers
 * Ipython can sit on a beefy server and be accessed from anywhere
 * RStudio can't: RStudio Server is not free
 * Rodeo + Pweave could be a Markdown solution...
@@ -167,7 +181,7 @@ RStudio + RMarkdown?
 <img src="./images/aliens_caching.jpg" height="400px"/>
 
 
-# Ipython vs. Markdown: Reporting
+# Reporting phase
 
 ## Interactive apps
 * Shiney
