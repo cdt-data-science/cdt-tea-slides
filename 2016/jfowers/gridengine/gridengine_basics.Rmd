@@ -38,11 +38,15 @@ Grid Engine (née Sun Grid Engine))
 * [SGE documentation](http://arc.liv.ac.uk/SGE/htmlman/manuals.html)
 * `man qsub` from within `renown`
 * [MIT SGE introduction](http://star.mit.edu/cluster/docs/0.92rc2/guides/sge.html)
-
+* Informatics guide to [connecting from outside the university](http://computing.help.inf.ed.ac.uk/connecting-home-overview)
 
 # Getting started
 
-Log in to the gridengine machine `renown`
+Log in to the gridengine machine `renown`. If you're outside the forum you will
+need to set up [AFS](http://computing.help.inf.ed.ac.uk/informatics-filesystem) 
+and [Kerberos](http://computing.help.inf.ed.ac.uk/TAGS/kerberos) first. See the 
+informatics guide to [connecting from outside the University](http://computing.help.inf.ed.ac.uk/connecting-home-overview) 
+and [external login via ssh](http://computing.help.inf.ed.ac.uk/external-login)
 
 ```{bash, eval=FALSE}
 ## If not on a dice machine
