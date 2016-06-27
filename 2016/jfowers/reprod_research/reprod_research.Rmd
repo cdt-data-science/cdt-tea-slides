@@ -164,7 +164,7 @@ RStudio + RMarkdown?
 
 ## Markdown's trick...
 
-<img src="./images/aliens_caching.jpg.jpg" height="400px"/>
+<img src="./images/aliens_caching.jpg" height="400px"/>
 
 
 # Ipython vs. Markdown: Reporting
