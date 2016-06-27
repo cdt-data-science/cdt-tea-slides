@@ -23,12 +23,13 @@ servers but now `ssh` access has been removed from all but a few. Now in place
 is Son of a Grid Engine (`SGE`) to control access to servers. This guide shows you how to 
 continue much like before and how to use basic `SGE` commands. 
 
-Son of a Grid Engine is an open source version of (Oracle Grid Engine (n\'{e}e 
-Sun Grid Engine))
+Son of a Grid Engine is an open source version of Univa Grid Engine (née Oracle 
+Grid Engine (née Sun Grid Engine))
 
 
 ## Useful references
 
+* [SGE project site](https://arc.liv.ac.uk/trac/SGE)
 * [SGE documentation](http://arc.liv.ac.uk/SGE/htmlman/manuals.html)
 * `man qsub` from within `renown`
 * [MIT SGE introduction](http://star.mit.edu/cluster/docs/0.92rc2/guides/sge.html)
