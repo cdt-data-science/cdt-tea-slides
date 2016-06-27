@@ -33,9 +33,9 @@ Log in to the gridengine machine `renown`
 ## If not on a dice machine
 kinit s0816700
 aklog
-ssh -K -X s0816700@staff.ssh.inf.ed.ac.uk
-# ssh -K -X s0816700@student.ssh.inf.ed.ac.uk
-ssh -X renown
+ssh -K s0816700@staff.ssh.inf.ed.ac.uk
+# ssh -K s0816700@student.ssh.inf.ed.ac.uk
+ssh renown
 ```
 
 We can see that lots of space has been added to the home directory
@@ -180,7 +180,8 @@ this is located on your DICE home as recommended)
     `ssh -K -L 8889:charles13:1337 s0816700@staff.ss.inf.ed.ac.uk` then go to
     `http://localhost:8889`
 
-<span style="color:red">**WARNING**</span>: If anyone finds/hacks your password...they have access to your 
+
+<span style="color:orange">**WARNING**</span>: If anyone finds/hacks your password...they have access to your 
 filesystem
 
 **AWESOME WIN**: this longjob process allows continual access to your filesystem

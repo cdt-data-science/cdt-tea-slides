@@ -251,9 +251,9 @@ div.tocify {
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">## If not on a dice machine</span>
 <span class="kw">kinit</span> s0816700
 <span class="kw">aklog</span>
-<span class="kw">ssh</span> -K -X s0816700@staff.ssh.inf.ed.ac.uk
-<span class="co"># ssh -K -X s0816700@student.ssh.inf.ed.ac.uk</span>
-<span class="kw">ssh</span> -X renown</code></pre>
+<span class="kw">ssh</span> -K s0816700@staff.ssh.inf.ed.ac.uk
+<span class="co"># ssh -K s0816700@student.ssh.inf.ed.ac.uk</span>
+<span class="kw">ssh</span> renown</code></pre>
 <p>We can see that lots of space has been added to the home directory</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">df</span> -h</code></pre>
 <pre><code>Filesystem                                     Size  Used Avail Use% Mounted on
@@ -351,7 +351,7 @@ exit</code></pre></li>
 <li>Outside the forum first kinit &amp; aklog then, ssh port forward charles13:1337 back to your computer: <code>ssh -K -L 8889:charles13:1337 s0816700@staff.ss.inf.ed.ac.uk</code> then go to <code>http://localhost:8889</code></li>
 </ul></li>
 </ol>
-<p><span style="color:red"><strong>WARNING</strong></span>: If anyone finds/hacks your password…they have access to your filesystem</p>
+<p><span style="color:orange"><strong>WARNING</strong></span>: If anyone finds/hacks your password…they have access to your filesystem</p>
 <p><strong>AWESOME WIN</strong>: this longjob process allows continual access to your filesystem after the original afs ticket expires</p>
 </div>
 <div id="current-issues" class="section level1">
