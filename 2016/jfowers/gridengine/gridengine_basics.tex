@@ -135,6 +135,9 @@ Oracle Grid Engine (née Sun Grid Engine))
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
+  \href{http://computing.help.inf.ed.ac.uk/james-and-charles-cluster}{Informatics
+  Documentation}
+\item
   \href{https://arc.liv.ac.uk/trac/SGE}{SGE project site}
 \item
   \href{http://arc.liv.ac.uk/SGE/htmlman/manuals.html}{SGE
@@ -234,7 +237,8 @@ Useful options:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qlogin} \NormalTok{-l gpu=1}
+\CommentTok{# qlogin -l gpu=1  # old command}
+\KeywordTok{qlogin} \NormalTok{-q gpuinteractive}
 \end{Highlighting}
 \end{Shaded}
 \end{itemize}

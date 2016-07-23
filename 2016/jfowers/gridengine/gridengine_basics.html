@@ -238,6 +238,7 @@ div.tocify {
 <div id="useful-references" class="section level2">
 <h2><span class="header-section-number">1.1</span> Useful references</h2>
 <ul>
+<li><a href="http://computing.help.inf.ed.ac.uk/james-and-charles-cluster">Informatics Documentation</a></li>
 <li><a href="https://arc.liv.ac.uk/trac/SGE">SGE project site</a></li>
 <li><a href="http://arc.liv.ac.uk/SGE/htmlman/manuals.html">SGE documentation</a></li>
 <li><code>man qsub</code> from within <code>renown</code></li>
@@ -284,7 +285,8 @@ tmpfs                                          396M     0  396M   0% /run/user/1
 <li><p>specify a specific node</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qlogin</span> -l h=charles14</code></pre></li>
 <li><p>specify resource must have a GPU</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qlogin</span> -l gpu=1</code></pre></li>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># qlogin -l gpu=1  # old command</span>
+<span class="kw">qlogin</span> -q gpuinteractive</code></pre></li>
 </ul>
 </div>
 <div id="submit-a-script-to-the-queue" class="section level2">

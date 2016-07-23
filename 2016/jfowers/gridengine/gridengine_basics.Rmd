@@ -34,6 +34,7 @@ Grid Engine (née Sun Grid Engine))
 
 ## Useful references
 
+* [Informatics Documentation](http://computing.help.inf.ed.ac.uk/james-and-charles-cluster)
 * [SGE project site](https://arc.liv.ac.uk/trac/SGE)
 * [SGE documentation](http://arc.liv.ac.uk/SGE/htmlman/manuals.html)
 * `man qsub` from within `renown`
@@ -104,7 +105,8 @@ Useful options:
     ```
 * specify resource must have a GPU
     ```{bash, eval=FALSE}
-    qlogin -l gpu=1
+    # qlogin -l gpu=1  # old command
+    qlogin -q gpuinteractive
     ```
 
 
