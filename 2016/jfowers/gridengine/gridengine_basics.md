@@ -161,7 +161,7 @@ charles13               lx-amd64       24    2   12   24  0.01   62.8G    2.6G  
 charles14               lx-amd64       24    2   12   24  0.01   62.8G    2.6G   31.4G     0.0
 ```
 
-# Example: Running an IPython Notebook and accessing it from outside DICE
+# Example 1: Running an IPython Notebook and accessing it from outside DICE
 
 1. Setup python virtual environment with IPython Notebook installed
     * Tip: install it in your home directory on DICE
@@ -173,6 +173,16 @@ this is located on your DICE home as recommended)
     ```bash
     source /afs/inf.ed.ac.uk/user/s08/s0816700/venv/nolearn/bin/activate
     ```
+    * Alternatively, if you have logged into your cdtcluster home repository, you
+can use:
+    
+    ```bash
+    id_number=s0000000
+    source /home/${id_number}/anaconda2/envs/deeplearning/bin/activate
+    ```
+keep in mind that anaconda2/envs/deeplearning refers to a conda environment
+that I set up, you will need to change that to yours.
+
 1. create a password hash using python
     
     ```python
@@ -202,6 +212,35 @@ filesystem
 
 **AWESOME WIN**: this longjob process allows continual access to your filesystem
 after the original afs ticket expires
+
+
+# Example 2: Running GPU Jobs
+Running jobs on the cluster requires setting all environment variables correctl
+in a bash script before executing it. Here we have a template of such a script:
+
+
+```bash
+#!/bin/bash
+id_number=s1473470
+export CUDA_HOME=/opt/cuda-7.5.18
+export CUDNN_HOME=/opt/cuDNN-7.0
+export LD_LIBRARY_PATH=${CUDNN_HOME}:${CUDA_HOME}/lib64:$LD_LIBRARY_PATH
+export PATH=${CUDA_HOME}/bin:${PATH}
+#export PATH="/home/s1473470/stuff" # use this for any local packacode you write
+export PYTHON_PATH=$PATH
+source /home/${id_number}/anaconda2/envs/deeplearning/bin/activate
+#export theano_flags=THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32
+#you need to put this in front of any gpu theano processes
+python tensorflow_example.py
+THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python keras/examples/cifar10_cnn.py
+
+```
+
+**NOTE**: This is a script that loads cuda and then tests tensorflow and runs
+a keras script that trains a CNN on the CIFAR10 dataset. To be able to run this
+you need to have installed theano, tensorflow and keras in your conda environme
+you could change the commands to your liking, but do include the libraries at t
+beginning.
 
 
 # Current issues

@@ -310,9 +310,9 @@ charles13               lx-amd64       24    2   12   24  0.01   62.8G    2.6G  
 charles14               lx-amd64       24    2   12   24  0.01   62.8G    2.6G   31.4G     0.0
 \end{verbatim}
 
-\section{Example: Running an IPython Notebook and accessing it from
+\section{Example 1: Running an IPython Notebook and accessing it from
 outside
-DICE}\label{example-running-an-ipython-notebook-and-accessing-it-from-outside-dice}
+DICE}\label{example-1-running-an-ipython-notebook-and-accessing-it-from-outside-dice}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -338,6 +338,23 @@ DICE}\label{example-running-an-ipython-notebook-and-accessing-it-from-outside-di
 \KeywordTok{source} \NormalTok{/afs/inf.ed.ac.uk/user/s08/s0816700/venv/nolearn/bin/activate}
 \end{Highlighting}
 \end{Shaded}
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Alternatively, if you have logged into your cdtcluster home
+    repository, you can use:
+  \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{id_number=}\NormalTok{s0000000}
+\KeywordTok{source} \NormalTok{/home/}\OtherTok{$\{id_number\}}\NormalTok{/anaconda2/envs/deeplearning/bin/activate}
+\end{Highlighting}
+\end{Shaded}
+
+  keep in mind that anaconda2/envs/deeplearning refers to a conda
+  environment that I set up, you will need to change that to yours.
 \item
   create a password hash using python
 
@@ -389,6 +406,36 @@ access to your filesystem
 
 \textbf{AWESOME WIN}: this longjob process allows continual access to
 your filesystem after the original afs ticket expires
+
+\section{Example 2: Running GPU Jobs}\label{example-2-running-gpu-jobs}
+
+Running jobs on the cluster requires setting all environment variables
+correctl in a bash script before executing it. Here we have a template
+of such a script:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#!/bin/bash}
+\OtherTok{id_number=}\NormalTok{s1473470}
+\KeywordTok{export} \OtherTok{CUDA_HOME=}\NormalTok{/opt/cuda-7.5.18}
+\KeywordTok{export} \OtherTok{CUDNN_HOME=}\NormalTok{/opt/cuDNN-7.0}
+\KeywordTok{export} \OtherTok{LD_LIBRARY_PATH=$\{CUDNN_HOME\}}\NormalTok{:}\OtherTok{$\{CUDA_HOME\}}\NormalTok{/lib64:}\OtherTok{$LD_LIBRARY_PATH}
+\KeywordTok{export} \OtherTok{PATH=$\{CUDA_HOME\}}\NormalTok{/bin:}\OtherTok{$\{PATH\}}
+\CommentTok{#export PATH="/home/s1473470/stuff" # use this for any local packacode you write}
+\KeywordTok{export} \OtherTok{PYTHON_PATH=$PATH}
+\KeywordTok{source} \NormalTok{/home/}\OtherTok{$\{id_number\}}\NormalTok{/anaconda2/envs/deeplearning/bin/activate}
+\CommentTok{#export theano_flags=THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32}
+\CommentTok{#you need to put this in front of any gpu theano processes}
+\KeywordTok{python} \NormalTok{tensorflow_example.py}
+\OtherTok{THEANO_FLAGS=}\NormalTok{mode=}\KeywordTok{FAST_RUN}\NormalTok{,device=gpu,floatX=float32 python keras/examples/cifar10_cnn.py}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{NOTE}: This is a script that loads cuda and then tests
+tensorflow and runs a keras script that trains a CNN on the CIFAR10
+dataset. To be able to run this you need to have installed theano,
+tensorflow and keras in your conda environme you could change the
+commands to your liking, but do include the libraries at t beginning.
 
 \section{Current issues}\label{current-issues}
 

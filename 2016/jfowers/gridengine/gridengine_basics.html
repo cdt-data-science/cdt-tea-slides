@@ -332,8 +332,8 @@ charles13               lx-amd64       24    2   12   24  0.01   62.8G    2.6G  
 charles14               lx-amd64       24    2   12   24  0.01   62.8G    2.6G   31.4G     0.0</code></pre>
 </div>
 </div>
-<div id="example-running-an-ipython-notebook-and-accessing-it-from-outside-dice" class="section level1">
-<h1><span class="header-section-number">4</span> Example: Running an IPython Notebook and accessing it from outside DICE</h1>
+<div id="example-1-running-an-ipython-notebook-and-accessing-it-from-outside-dice" class="section level1">
+<h1><span class="header-section-number">4</span> Example 1: Running an IPython Notebook and accessing it from outside DICE</h1>
 <ol style="list-style-type: decimal">
 <li>Setup python virtual environment with IPython Notebook installed
 <ul>
@@ -342,7 +342,13 @@ charles14               lx-amd64       24    2   12   24  0.01   62.8G    2.6G  
 <li><code>qlogin</code> to your server of choice</li>
 <li>Check GPU use with <code>nvidia-smi</code></li>
 <li><p>activate your python virtual environment (you’ll need to <code>kinit</code> &amp; <code>aklog</code> if this is located on your DICE home as recommended)</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">source</span> /afs/inf.ed.ac.uk/user/s08/s0816700/venv/nolearn/bin/activate</code></pre></li>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">source</span> /afs/inf.ed.ac.uk/user/s08/s0816700/venv/nolearn/bin/activate</code></pre>
+<ul>
+<li>Alternatively, if you have logged into your cdtcluster home repository, you can use:</li>
+</ul>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">id_number=</span>s0000000
+<span class="kw">source</span> /home/<span class="ot">${id_number}</span>/anaconda2/envs/deeplearning/bin/activate</code></pre>
+<p>keep in mind that anaconda2/envs/deeplearning refers to a conda environment that I set up, you will need to change that to yours.</p></li>
 <li><p>create a password hash using python</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> IPython.lib <span class="ch">import</span> passwd
 passwd()
@@ -362,8 +368,26 @@ exit</code></pre></li>
 <p><span style="color:orange"><strong>WARNING</strong></span>: If anyone finds/hacks your password…they have access to your filesystem</p>
 <p><strong>AWESOME WIN</strong>: this longjob process allows continual access to your filesystem after the original afs ticket expires</p>
 </div>
+<div id="example-2-running-gpu-jobs" class="section level1">
+<h1><span class="header-section-number">5</span> Example 2: Running GPU Jobs</h1>
+<p>Running jobs on the cluster requires setting all environment variables correctl in a bash script before executing it. Here we have a template of such a script:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+<span class="ot">id_number=</span>s1473470
+<span class="kw">export</span> <span class="ot">CUDA_HOME=</span>/opt/cuda-7.5.18
+<span class="kw">export</span> <span class="ot">CUDNN_HOME=</span>/opt/cuDNN-7.0
+<span class="kw">export</span> <span class="ot">LD_LIBRARY_PATH=${CUDNN_HOME}</span>:<span class="ot">${CUDA_HOME}</span>/lib64:<span class="ot">$LD_LIBRARY_PATH</span>
+<span class="kw">export</span> <span class="ot">PATH=${CUDA_HOME}</span>/bin:<span class="ot">${PATH}</span>
+<span class="co">#export PATH=&quot;/home/s1473470/stuff&quot; # use this for any local packacode you write</span>
+<span class="kw">export</span> <span class="ot">PYTHON_PATH=$PATH</span>
+<span class="kw">source</span> /home/<span class="ot">${id_number}</span>/anaconda2/envs/deeplearning/bin/activate
+<span class="co">#export theano_flags=THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32</span>
+<span class="co">#you need to put this in front of any gpu theano processes</span>
+<span class="kw">python</span> tensorflow_example.py
+<span class="ot">THEANO_FLAGS=</span>mode=<span class="kw">FAST_RUN</span>,device=gpu,floatX=float32 python keras/examples/cifar10_cnn.py</code></pre>
+<p><strong>NOTE</strong>: This is a script that loads cuda and then tests tensorflow and runs a keras script that trains a CNN on the CIFAR10 dataset. To be able to run this you need to have installed theano, tensorflow and keras in your conda environme you could change the commands to your liking, but do include the libraries at t beginning.</p>
+</div>
 <div id="current-issues" class="section level1">
-<h1><span class="header-section-number">5</span> Current issues</h1>
+<h1><span class="header-section-number">6</span> Current issues</h1>
 <ul>
 <li>Automatic resource allocation doesn’t appear to take into account GPU use…</li>
 <li>…working with Charles and Iain Rae on that</li>
@@ -372,7 +396,7 @@ exit</code></pre></li>
 </ul>
 </div>
 <div id="tips" class="section level1">
-<h1><span class="header-section-number">6</span> Tips</h1>
+<h1><span class="header-section-number">7</span> Tips</h1>
 <ul>
 <li>when logged in to <code>renown</code> type <code>q</code> then double tap <code>tab</code> to get a list of the commands for use!</li>
 <li><code>nvidia-smi</code> lets you check the GPU use on a server - if the command doesn’t work then the server you are on doesn’t have a GPU; try to login to another server; you can specify a specific server with <code>qlogin -l h=charles14</code></li>
